@@ -23,7 +23,6 @@ Set-MpPreference -DisableIOAVProtection $true
 Set-MpPreference -DisableBlockAtFirstSeen $true
 Set-MpPreference -DisableScanningNetworkFiles $true
 Set-MpPreference -DisableArchiveScanning $true
-Set-MpPreference -DisablePuaScanning $true
 
 # Desactivar la detección de archivos descargados
 Set-MpPreference -DisableAutoExclusions $true
